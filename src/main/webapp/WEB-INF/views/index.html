@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta charset="utf-8" />
+
+</head>
+<body>
+<h3>USERS</h3>
+<p>
+    <a th:href="@{/users/create}">ADD NEW USER</a>
+</p>
+
+<div class="notify">
+    <div th:if="${success}">
+        <span th:text="${success}"></span>
+    </div>
+</div>
+
+<table id="users">
+    <thead>
+    <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Phone Number</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row : ${users}">
+        <td th:text="${row.firstName}"></td>
+        <td th:text="${row.lastName}"></td>
+        <td th:text="${row.phoneNumber}"></td>
+        <td th:text="${row.email}"></td>
+        <td th:text="${row.age}"></td>
+        <td><a th:href="@{/users/{id}/edit(id=${row.id})}">edit</a></td>
+        <td><a th:href="@{/users/{id}/remove(id=${row.id})}">delete</a></td>
+        <td><a th:href="@{/users/{id}/view(id=${row.id})}">view</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
